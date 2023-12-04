@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Program</title>
+  </head>
+  <body>
+    <h1>Create New Program</h1>
+    <form id="programForm" enctype="multipart/form-data">
+      <label for="Nama_Program">Nama Program:</label><br />
+      <input
+        type="text"
+        id="Nama_Program"
+        name="Nama_Program"
+        required
+      /><br /><br />
+
+      <label for="Harga">Harga:</label><br />
+      <input type="text" id="Harga" name="Harga" required /><br /><br />
+
+      <label for="Deskripsi">Deskripsi:</label><br />
+      <input type="text" id="Deskripsi" name="Deskripsi" required /><br /><br />
+
+      <label for="thumbnail">Upload Thumbnail:</label><br />
+      <input
+        type="file"
+        id="thumbnail"
+        name="thumbnail"
+        accept="image/*"
+        required
+      /><br /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      document
+        .getElementById("programForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          const formData = new FormData();
+          const fileField = document.querySelector('input[type="file"]');
+
+          formData.append("thumbnail", fileField.files[0]);
+          formData.append(
+            "Nama_Program",
+            document.getElementById("Nama_Program").value
+          );
+          formData.append("Harga", document.getElementById("Harga").value);
+          formData.append(
+            "Deskripsi",
+            document.getElementById("Deskripsi").value
+          );
+
+          try {
+            const response = await fetch("http://localhost:3000/api/program", {
+              method: "POST",
+              body: formData,
+            });
+
+            const data = await response.json();
+            console.log(data);
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        });
+    </script>
+  </body>
+</html>
