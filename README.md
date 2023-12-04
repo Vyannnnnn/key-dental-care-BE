@@ -3,88 +3,88 @@
 ## Dashboard
 
 - **GET** `/api/dashboard`
-  - Retrieves dashboard statistics.
+  - Mengambil statistik dashboard.
 
-## Move to Patient
+## Pindah ke Pasien
 
 - **POST** `/api/move-to-patient/:id`
-  - Moves data from the queue to the patient based on ID.
+  - Memindahkan data dari antrian ke pasien berdasarkan ID.
 
-## Update Patient Status
+## Perbarui Status Pasien
 
 - **POST** `/api/selesaikan-status/:id`
-  - Updates patient status to "Selesai" (Finished) based on ID.
+  - Memperbarui status pasien menjadi "Selesai" berdasarkan ID.
 
-## Patient History
+## Riwayat Pasien
 
 - **POST** `/api/get-riwayat-pasien/:user_id`
-  - Retrieves completed patient history based on user ID.
+  - Mengambil riwayat pasien yang telah selesai berdasarkan ID pengguna.
 
-## Patient Visits
+## Kunjungan Pasien
 
 - **POST** `/api/get-kunungan-pasien/:user_id`
-  - Retrieves approved patient visits based on user ID.
+  - Mengambil kunjungan pasien yang sudah disetujui berdasarkan ID pengguna.
 
-## Queue
+## Antrian
 
 - **GET** `/api/queue`
-  - Retrieves the queue list.
+  - Mengambil daftar antrian.
 - **POST** `/api/queue`
-  - Creates a new queue entry.
+  - Membuat entri antrian baru.
 - **PUT** `/api/queue/:id`
-  - Updates queue information based on ID.
+  - Memperbarui informasi antrian berdasarkan ID.
 - **DELETE** `/api/queue/:id`
-  - Deletes a queue based on ID.
+  - Menghapus antrian berdasarkan ID.
 
-## Patient
+## Pasien
 
 - **GET** `/api/patient`
-  - Retrieves the patient list.
+  - Mengambil daftar pasien.
 - **POST** `/api/patient`
-  - Creates a new patient data.
+  - Membuat data pasien baru.
 - **PUT** `/api/patient/:id`
-  - Updates patient information based on ID.
+  - Memperbarui informasi pasien berdasarkan ID.
 - **DELETE** `/api/patient/:id`
-  - Deletes patient data based on ID.
+  - Menghapus data pasien berdasarkan ID.
 
-## Timetable
+## Jadwal
 
 - **GET** `/api/timetable`
-  - Retrieves the timetable list.
+  - Mengambil daftar jadwal.
 - **POST** `/api/timetable`
-  - Creates a new timetable entry.
+  - Membuat entri jadwal baru.
 - **PUT** `/api/timetable/:id`
-  - Updates timetable based on ID.
+  - Memperbarui jadwal berdasarkan ID.
 - **DELETE** `/api/timetable/:id`
-  - Deletes the timetable based on ID.
+  - Menghapus jadwal berdasarkan ID.
 
 ## Program
 
 - **GET** `/api/program`
-  - Retrieves the program list.
+  - Mengambil daftar program.
 - **POST** `/api/program`
-  - Creates a new program entry.
+  - Membuat entri program baru.
 - **PUT** `/api/program/:id`
-  - Updates the program based on ID.
+  - Memperbarui program berdasarkan ID.
 - **DELETE** `/api/program/:id`
-  - Deletes the program based on ID.
+  - Menghapus program berdasarkan ID.
 
-## Doctor
+## Dokter
 
 - **GET** `/api/dokter`
-  - Retrieves the list of doctors.
+  - Mengambil daftar dokter.
 - **GET** `/api/dokter/:id`
-  - Retrieves doctor information based on ID.
+  - Mengambil informasi dokter berdasarkan ID.
 - **POST** `/api/dokter`
-  - Adds a new doctor with an image.
+  - Menambahkan dokter baru dengan gambar.
 - **PUT** `/api/dokter/:id`
-  - Updates doctor information based on ID.
+  - Memperbarui informasi dokter berdasarkan ID.
 - **DELETE** `/api/dokter/:id`
-  - Deletes doctor information based on ID.
+  - Menghapus informasi dokter berdasarkan ID.
 
-## Article
+## Artikel
 
 - **GET** `/api/artic`
-  - Retrieves the list of articles.
+  - Mengambil daftar artikel.
 - **POST** `/api/artic`
-  - Adds an article with an image.
+  - Menambahkan artikel dengan gambar.
