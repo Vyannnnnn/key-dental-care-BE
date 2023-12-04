@@ -1,5 +1,14 @@
 # KeyDentalCare_API
 
+## Authtentikasi
+
+- **POST** `/api/auth/signup`
+  - Registrasi User.
+- **POST** `/api/auth/signin`
+  - Login user & admin.
+- **POST** `/api/auth/signout`
+  - Logout user
+
 ## Dashboard
 
 - **GET** `/api/dashboard`
