@@ -1,79 +1,90 @@
 # KeyDentalCare_API
 
-Dashboard
-GET /api/dashboard
-Mendapatkan informasi statistik dashboard.
+## Dashboard
 
-Move to Patient
-POST /api/move-to-patient/:id
-Memindahkan data dari antrian ke pasien berdasarkan ID.
+- **GET** `/api/dashboard`
+  - Retrieves dashboard statistics.
 
-Update Patient Status
-POST /api/selesaikan-status/:id
-Memperbarui status pasien menjadi selesai berdasarkan ID.
+## Move to Patient
 
-Riwayat Pasien
-POST /api/get-riwayat-pasien/:user_id
-Mendapatkan riwayat pasien yang telah selesai berdasarkan ID pengguna.
+- **POST** `/api/move-to-patient/:id`
+  - Moves data from the queue to the patient based on ID.
 
-Kunjungan Pasien
-POST /api/get-kunungan-pasien/:user_id
-Mendapatkan kunjungan pasien yang sudah disetujui berdasarkan ID pengguna.
+## Update Patient Status
 
-Antrian
-GET /api/queue
-Mendapatkan daftar antrian.
-POST /api/queue
-Membuat antrian baru.
-PUT /api/queue/:id
-Memperbarui informasi antrian berdasarkan ID.
-DELETE /api/queue/:id
-Menghapus antrian berdasarkan ID.
+- **POST** `/api/selesaikan-status/:id`
+  - Updates patient status to "Selesai" (Finished) based on ID.
 
-Pasien
-GET /api/patient
-Mendapatkan daftar pasien.
-POST /api/patient
-Membuat data pasien baru.
-PUT /api/patient/:id
-Memperbarui informasi pasien berdasarkan ID.
-DELETE /api/patient/:id
-Menghapus data pasien berdasarkan ID.
+## Patient History
 
-Jadwal
-GET /api/timetable
-Mendapatkan daftar jadwal.
-POST /api/timetable
-Membuat jadwal baru.
-PUT /api/timetable/:id
-Memperbarui jadwal berdasarkan ID.
-DELETE /api/timetable/:id
-Menghapus jadwal berdasarkan ID.
+- **POST** `/api/get-riwayat-pasien/:user_id`
+  - Retrieves completed patient history based on user ID.
 
-Program
-GET /api/program
-Mendapatkan daftar program.
-POST /api/program
-Membuat program baru.
-PUT /api/program/:id
-Memperbarui program berdasarkan ID.
-DELETE /api/program/:id
-Menghapus program berdasarkan ID.
+## Patient Visits
 
-Dokter
-GET /api/dokter
-Mendapatkan daftar dokter.
-GET /api/dokter/:id
-Mendapatkan informasi dokter berdasarkan ID.
-POST /api/dokter
-Menambahkan dokter dengan gambar.
-PUT /api/dokter/:id
-Memperbarui informasi dokter berdasarkan ID.
-DELETE /api/dokter/:id
-Menghapus informasi dokter berdasarkan ID.
+- **POST** `/api/get-kunungan-pasien/:user_id`
+  - Retrieves approved patient visits based on user ID.
 
-Artikel
-GET /api/artic
-Mendapatkan daftar artikel.
-POST /api/artic
-Menambahkan artikel dengan gambar.
+## Queue
+
+- **GET** `/api/queue`
+  - Retrieves the queue list.
+- **POST** `/api/queue`
+  - Creates a new queue entry.
+- **PUT** `/api/queue/:id`
+  - Updates queue information based on ID.
+- **DELETE** `/api/queue/:id`
+  - Deletes a queue based on ID.
+
+## Patient
+
+- **GET** `/api/patient`
+  - Retrieves the patient list.
+- **POST** `/api/patient`
+  - Creates a new patient data.
+- **PUT** `/api/patient/:id`
+  - Updates patient information based on ID.
+- **DELETE** `/api/patient/:id`
+  - Deletes patient data based on ID.
+
+## Timetable
+
+- **GET** `/api/timetable`
+  - Retrieves the timetable list.
+- **POST** `/api/timetable`
+  - Creates a new timetable entry.
+- **PUT** `/api/timetable/:id`
+  - Updates timetable based on ID.
+- **DELETE** `/api/timetable/:id`
+  - Deletes the timetable based on ID.
+
+## Program
+
+- **GET** `/api/program`
+  - Retrieves the program list.
+- **POST** `/api/program`
+  - Creates a new program entry.
+- **PUT** `/api/program/:id`
+  - Updates the program based on ID.
+- **DELETE** `/api/program/:id`
+  - Deletes the program based on ID.
+
+## Doctor
+
+- **GET** `/api/dokter`
+  - Retrieves the list of doctors.
+- **GET** `/api/dokter/:id`
+  - Retrieves doctor information based on ID.
+- **POST** `/api/dokter`
+  - Adds a new doctor with an image.
+- **PUT** `/api/dokter/:id`
+  - Updates doctor information based on ID.
+- **DELETE** `/api/dokter/:id`
+  - Deletes doctor information based on ID.
+
+## Article
+
+- **GET** `/api/artic`
+  - Retrieves the list of articles.
+- **POST** `/api/artic`
+  - Adds an article with an image.
