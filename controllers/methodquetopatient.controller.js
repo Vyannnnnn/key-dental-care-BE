@@ -1,6 +1,7 @@
 const db = require("../models");
 const Antrian = db.queue;
 const Pasien = db.patient;
+const Notifikasi = db.notifikasi;
 
 class Method {
   async moveToPatient(req, res) {
@@ -25,12 +26,24 @@ class Method {
         status: "Disetujui",
       };
 
+      const newNotif = {
+        user_id: selectedAntrian.user_id,
+        isi_notifikasi:
+          "Pendaftaran kamu sudah diterima oleh dokter!\nSilahkan klik untuk melihat nomor antrian!",
+        waktu_pengiriman: new Date(),
+        status: "Terkirim",
+      };
+
+      req.app.get("io").emit("notification", newNotif);
+
+      await Notifikasi.create(newNotif);
       await Pasien.create(newPatient);
       await Antrian.destroy({ where: { id: id } });
 
       res.json({
         message: "Data moved to Pasien table successfully",
         newPatient,
+        newNotif,
       });
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -78,11 +91,12 @@ class Method {
     const userId = req.params.user_id;
 
     try {
-      const approvedPatients = await Pasien.findAll({
+      const approvedPatients = await Pasien.findOne({
         where: {
           user_id: userId,
           status: "Disetujui",
         },
+        order: [["createdAt", "DESC"]],
       });
 
       res.json({ approvedPatients });

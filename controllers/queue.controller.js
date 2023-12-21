@@ -24,6 +24,7 @@ class QueueController {
       const formattedQueueNumber = `000${nextQueueNumber}`.slice(-4);
       const newQueue = await Queue.create({
         nama: req.body.Nama,
+        user_id: req.body.User_id,
         kode_antrian: `K-${formattedQueueNumber}`,
         pelayanan: req.body.Pelayanan,
         no_telepon: req.body.No_Telepon,

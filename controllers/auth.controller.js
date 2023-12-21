@@ -74,16 +74,14 @@ exports.signup = async (req, res) => {
         });
       }
     } else {
-      // user has role = 1
       const result = user.setRoles([1]);
       if (result) {
         const token = jwt.sign({ id: user.id }, config.secret, {
           algorithm: "HS256",
           allowInsecureKeySizes: true,
-          expiresIn: 86400, // 24 hours
+          expiresIn: 86400,
         });
 
-        // Respons setelah registrasi berhasil
         return res.status(200).send({
           user: {
             id: user.id,

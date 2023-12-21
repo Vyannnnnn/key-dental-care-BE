@@ -3,6 +3,9 @@ module.exports = (sequelize, Sequelize) => {
     user_id: {
       type: Sequelize.INTEGER,
     },
+    rekam_medis_id: {
+      type: Sequelize.INTEGER,
+    },
     nama: {
       type: Sequelize.STRING,
     },

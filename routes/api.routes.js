@@ -7,6 +7,12 @@ const Dashboard = require("../controllers/dashboard.controller");
 const Dokter = require("../controllers/dokter.controller");
 const Method = require("../controllers/methodquetopatient.controller");
 const Patient = require("../controllers/patient.controller");
+const User = require("../controllers/usermethod.controller");
+const RekamMedis = require("../controllers/rekammedis.controller");
+const Treatment = require("../controllers/tritment.controller");
+const Notifikasi = require("../controllers/notifikasi.controller");
+const Chat = require("../controllers/chat.controller");
+const { authJwt } = require("../middleware");
 
 const router = express.Router();
 
@@ -23,7 +29,7 @@ router.post(
   Method.getCompletedPatientsByUserId
 );
 router.post(
-  "/api/get-kunungan-pasien/:user_id",
+  "/api/get-kunjungan-pasien/:user_id",
   Method.getApprovedPatientsByUserId
 );
 
@@ -42,7 +48,7 @@ router.post("/api/timetable", TimeTbale.createTimetable);
 router.put("/api/timetable/:id", TimeTbale.updateTimetable);
 router.delete("/api/timetable/:id", TimeTbale.deleteTimetable);
 
-router.get("/api/program", Program.getPrograms);
+router.get("/api/program", [authJwt.verifyToken], Program.getPrograms);
 router.post("/api/program", Program.createProgram);
 router.put("/api/program/:id", Program.updateProgram);
 router.delete("/api/program/:id", Program.deleteProgram);
@@ -52,6 +58,33 @@ router.get("/api/dokter/:id", Dokter.getDoctorById);
 router.post("/api/dokter", Dokter.addDoctorWithImage);
 router.put("/api/dokter/:id", Dokter.updateDoctorById);
 router.delete("/api/dokter/:id", Dokter.deleteDoctorById);
+
+router.get("/api/user", User.getAllUsers);
+router.get("/api/user/:id", User.getUserById);
+router.put("/api/user/:id", User.updateUserById);
+router.delete("/api/user/:id", User.deleteUserById);
+
+router.get("/api/rekam-medis", RekamMedis.getAllRekamMedis);
+router.post("/api/rekam-medis", RekamMedis.createRekamMedis);
+router.get("/api/rekam-medis/:id", RekamMedis.getRekamMedisById);
+router.put("/api/rekam-medis/:id", RekamMedis.updateRekamMedis);
+router.delete("/api/rekam-medis/:id", RekamMedis.deleteRekamMedis);
+router.get(
+  "/api/rekam-medis/pasien/:pasien_id",
+  RekamMedis.getRekamMedisByPasienId
+);
+
+router.post("/api/treatment", Treatment.createTreatment);
+router.get("/api/treatment", Treatment.getAllTreatments);
+router.get("/api/treatment/:id", Treatment.getTreatmentById);
+router.put("/api/treatment/:id", Treatment.updateTreatmentById);
+router.delete("/api/treatment/:id", Treatment.deleteTreatmentById);
+router.get("/api/treatment/user/:user_id", Treatment.getTreatmentsByUserId);
+
+router.get("/api/notifikasi/user/:user_id", Notifikasi.getNotifikasiByUserId);
+
+router.get("/api/chat/:receiverId", Chat.getChatHistory);
+router.post("/api/chat/:receiverId", Chat.createChatMessage);
 
 router.get("/api/artic", ArtikQu.getAllArticles);
 router.post("/api/artic", ArtikQu.addArticleWithImage);

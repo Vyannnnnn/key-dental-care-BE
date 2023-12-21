@@ -15,6 +15,15 @@ module.exports = (sequelize, Sequelize) => {
     profile_photo: {
       type: Sequelize.STRING,
     },
+    tanggal_lahir: {
+      type: Sequelize.STRING,
+    },
+    jenis_kelamin: {
+      type: Sequelize.STRING,
+    },
+    alamat: {
+      type: Sequelize.STRING,
+    },
   });
 
   return User;

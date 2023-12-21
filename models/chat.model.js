@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const Chat = sequelize.define("chat", {
-    chat_id: {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -19,6 +19,10 @@ module.exports = (sequelize, Sequelize) => {
     },
     lampiran_gambar: {
       type: Sequelize.STRING,
+    },
+    status: {
+      type: Sequelize.STRING,
+      allowNull: true,
     },
   });
 

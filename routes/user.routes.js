@@ -7,8 +7,8 @@ module.exports = function (app) {
     next();
   });
 
-  // Rute yang tidak memerlukan otentikasi JWT
   app.get("/api/test/all", controller.allAccess);
+
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
   app.get(
     "/api/test/mod",

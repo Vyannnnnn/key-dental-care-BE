@@ -26,6 +26,12 @@ db.timetable = require("../models/timetable.model.js")(sequelize, Sequelize);
 db.artikel = require("./artikel.model.js")(sequelize, Sequelize);
 db.chat = require("../models/chat.model.js")(sequelize, Sequelize);
 db.dokter = require("../models/dokter.model.js")(sequelize, Sequelize);
+db.notifikasi = require("../models/notifikasi.model.js")(sequelize, Sequelize);
+db.rekammedis = require("../models/rekammedis.model.js")(sequelize, Sequelize);
+db.tritmen = require("../models/tritment.model.js")(sequelize, Sequelize);
+
+db.chat.belongsTo(db.user, { foreignKey: "pengirim_id", as: "Sender" });
+db.chat.belongsTo(db.user, { foreignKey: "penerima_id", as: "Receiver" });
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",
