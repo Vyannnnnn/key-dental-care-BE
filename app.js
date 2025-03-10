@@ -45,7 +45,7 @@ const io = socketIo(server, {
 });
 
 app.get("/chat/:userId", (req, res) => {
-  res.sendFile(__dirname + "/public/tesFT/chatAdminChat.html");
+  res.sendFile(__dirname + "/public/chatAdminChat.html");
 });
 
 app.set("io", io);
@@ -135,8 +135,9 @@ io.on("messageRead", async ({ messageId }) => {
   }
 });
 
-const accountSid = "AC7b583d694687254ee1abaa3637880823";
-const authToken = "e9ef2c7ab302101088c01b06442409f8";
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+
 const client = twilio(accountSid, authToken);
 
 const otpMap = new Map();
