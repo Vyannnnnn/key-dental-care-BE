@@ -7,15 +7,19 @@ module.exports = (sequelize, Sequelize) => {
     },
     hari: {
       type: Sequelize.STRING,
+      allowNull: false,
     },
     tanggal: {
       type: Sequelize.STRING,
+      allowNull: false,
     },
     mulai_jam: {
       type: Sequelize.TIME,
+      allowNull: false,
     },
     sampai_jam: {
       type: Sequelize.TIME,
+      allowNull: false,
     },
   });
 

@@ -18,16 +18,22 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
+db.user_role = require("../models/user_role.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.queue = require("../models/queue.model.js")(sequelize, Sequelize);
 db.program = require("../models/program.model.js")(sequelize, Sequelize);
+
 db.patient = require("../models/patient.model.js")(sequelize, Sequelize);
+db.rekammedis = require("../models/rekammedis.model.js")(sequelize, Sequelize);
+db.patient.hasOne(db.rekammedis, {foreignKey: "pasien_id"});
+db.rekammedis.belongsTo(db.patient, {foreignKey: "pasien_id"})
+
+
 db.timetable = require("../models/timetable.model.js")(sequelize, Sequelize);
 db.artikel = require("./artikel.model.js")(sequelize, Sequelize);
 db.chat = require("../models/chat.model.js")(sequelize, Sequelize);
 db.dokter = require("../models/dokter.model.js")(sequelize, Sequelize);
 db.notifikasi = require("../models/notifikasi.model.js")(sequelize, Sequelize);
-db.rekammedis = require("../models/rekammedis.model.js")(sequelize, Sequelize);
 db.tritmen = require("../models/tritment.model.js")(sequelize, Sequelize);
 
 db.chat.belongsTo(db.user, { foreignKey: "pengirim_id", as: "Sender" });

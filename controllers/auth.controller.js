@@ -133,6 +133,9 @@ exports.signin = async (req, res) => {
       user.password
     );
 
+    console.log("Password yang dimasukkan:", req.body.password);
+    console.log("Password yang ada di database:", user.password);
+
     if (!passwordIsValid) {
       return res.status(401).send({
         message: "Invalid Password!",

@@ -13,14 +13,29 @@ class TimetableController {
 
   async createTimetable(req, res) {
     try {
+      console.log("Request Body:", req.body);
+      const { hari, tanggal, mulai_jam, sampai_jam } = req.body;
+      // if (!hari || !tanggal || !mulai_jam || !sampai_jam) {
+      //   return res.status(400).json({ error: "Semua field harus diisi" });
+      // }
       const newTimetable = await Timetable.create({
-        hari: req.body.Hari,
-        tanggal: req.body.Tanggal,
-        mulai_jam: req.body.Mulai_Pukul,
-        sampai_jam: req.body.Sampai_Pukul,
+        // hari: req.body.Hari,
+        // tanggal: req.body.Tanggal,
+        // mulai_jam: req.body.Mulai_Pukul,
+        // sampai_jam: req.body.Sampai_Pukul,
+        hari,
+        tanggal,
+        mulai_jam,
+        sampai_jam,
       });
-      res.json({ id: newTimetable.id });
+      // res.json({ id: newTimetable.id });
+      // res.status(201).json({
+      //   message: "Timetable berhasil ditambahkan",
+      //   timetable: newTimetable,
+      // });
+      res.status(201).json(newTimetable);
     } catch (err) {
+      console.error("Error inserting data:", err);
       res.status(500).json({ error: err.message });
     }
   }

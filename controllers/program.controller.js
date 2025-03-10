@@ -5,7 +5,11 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "../public/img/"));
+    const uploadPath = path.join(__dirname, "..", "public", "img");
+  
+    require("fs").mkdirSync(uploadPath, { recursive: true });
+
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname);
@@ -32,6 +36,11 @@ class ProgramController {
         return res.status(500).json({ error: err.message });
       }
 
+      console.log("file upload successful", req.file);
+
+      if (!req.file) {
+        return res.status(404).json({ error: "Thumbnail is required" });
+      }
       const { Nama_Program, Harga, Deskripsi } = req.body;
       const thumbnail = req.file.filename;
 

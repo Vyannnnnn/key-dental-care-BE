@@ -1,7 +1,7 @@
 const express = require("express");
 const QueueControl = require("../controllers/queue.controller");
 const ArtikQu = require("../controllers/artikel.controller");
-const TimeTbale = require("../controllers/timetable.controller");
+const TimeTable = require("../controllers/timetable.controller");
 const Program = require("../controllers/program.controller");
 const Dashboard = require("../controllers/dashboard.controller");
 const Dokter = require("../controllers/dokter.controller");
@@ -43,10 +43,10 @@ router.post("/api/patient", Patient.createPatient);
 router.put("/api/patient/:id", Patient.updatePatient);
 router.delete("/api/patient/:id", Patient.deletePatient);
 
-router.get("/api/timetable", TimeTbale.getTimetables);
-router.post("/api/timetable", TimeTbale.createTimetable);
-router.put("/api/timetable/:id", TimeTbale.updateTimetable);
-router.delete("/api/timetable/:id", TimeTbale.deleteTimetable);
+router.get("/api/timetable", TimeTable.getTimetables);
+router.post("/api/timetable", TimeTable.createTimetable);
+router.put("/api/timetable/:id", TimeTable.updateTimetable);
+router.delete("/api/timetable/:id", TimeTable.deleteTimetable);
 
 router.get("/api/program", [authJwt.verifyToken], Program.getPrograms);
 router.post("/api/program", Program.createProgram);

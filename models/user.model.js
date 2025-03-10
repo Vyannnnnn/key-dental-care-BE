@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
     },
     tanggal_lahir: {
-      type: Sequelize.STRING,
+      type: Sequelize.DATE,
     },
     jenis_kelamin: {
       type: Sequelize.STRING,
@@ -25,6 +25,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
     },
   });
-
+  // const Role = sequelize.models.role;
+  // User.belongsToMany(Role, { through: "user_roles" });
   return User;
 };
