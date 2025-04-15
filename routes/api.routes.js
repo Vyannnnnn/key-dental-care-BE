@@ -24,14 +24,8 @@ router.get("/api/dashboard", Dashboard.getDashboardCounts);
 
 router.post("/api/move-to-patient/:id", Method.moveToPatient);
 router.post("/api/selesaikan-status/:id", Method.updatePatientStatus);
-router.post(
-  "/api/get-riwayat-pasien/:user_id",
-  Method.getCompletedPatientsByUserId
-);
-router.post(
-  "/api/get-kunjungan-pasien/:user_id",
-  Method.getApprovedPatientsByUserId
-);
+router.post("/api/get-riwayat-pasien/:user_id", Method.getCompletedPatientsByUserId);
+router.post("/api/get-kunjungan-pasien/:user_id", Method.getApprovedPatientsByUserId);
 
 router.get("/api/queue", QueueControl.getQueues);
 router.post("/api/queue", QueueControl.createQueue);
@@ -69,10 +63,7 @@ router.post("/api/rekam-medis", RekamMedis.createRekamMedis);
 router.get("/api/rekam-medis/:id", RekamMedis.getRekamMedisById);
 router.put("/api/rekam-medis/:id", RekamMedis.updateRekamMedis);
 router.delete("/api/rekam-medis/:id", RekamMedis.deleteRekamMedis);
-router.get(
-  "/api/rekam-medis/pasien/:pasien_id",
-  RekamMedis.getRekamMedisByPasienId
-);
+router.get("/api/rekam-medis/pasien/:pasien_id", RekamMedis.getRekamMedisByPasienId);
 
 router.post("/api/treatment", Treatment.createTreatment);
 router.get("/api/treatment", Treatment.getAllTreatments);
@@ -88,5 +79,21 @@ router.post("/api/chat/:receiverId", Chat.createChatMessage);
 
 router.get("/api/artic", ArtikQu.getAllArticles);
 router.post("/api/artic", ArtikQu.addArticleWithImage);
+
+router.get("/filter-by-month", async (req, res) => {
+  const { table, monthField, month } = req.query;
+
+  if (!table || !monthField || !month) {
+    return res.status(400).json({ message: "Invalid request query" });
+  }
+  const sql = `SELECT * FROM ?? WHERE MONTH(??) = ?`;
+  try {
+    const [result] = await db.query(sql, [table, monthField, month]);
+    res.json(result);
+  } catch (error) {
+    console.error("filter error", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 module.exports = router;
